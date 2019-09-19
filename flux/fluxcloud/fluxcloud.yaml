@@ -1,0 +1,61 @@
+---
+kind: Service
+apiVersion: v1
+metadata:
+  name: fluxcloud
+  namespace: kube-system
+spec:
+  selector:
+    name: fluxcloud
+  ports:
+  - protocol: TCP
+    port: 80
+    targetPort: 3032
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: fluxcloud
+  namespace: kube-system
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      name: fluxcloud
+  strategy:
+    type: Recreate
+  template:
+    metadata:
+      labels:
+        name: fluxcloud
+    spec:
+      securityContext:
+        runAsUser: 999
+      containers:
+      - name: fluxcloud
+        image: justinbarrick/fluxcloud:v0.3.8
+        imagePullPolicy: IfNotPresent
+        ports:
+        - containerPort: 3032
+        env:
+        - name: SLACK_URL
+          value: "https://hooks.slack.com/services/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"
+        - name: SLACK_CHANNEL
+          value: "#flux-notifications"
+        # Or configure multiple channels
+        # (comma separated <channel>=<namespace>) string:
+        #  value: "#kubernetes=*,#team=team"
+        # Optional: legacy Slack API token
+        # - name: SLACK_TOKEN
+        #   valueFrom:
+        #     secretKeyRef:
+        #       key: token
+        #       name: slack-token
+        - name: SLACK_USERNAME
+          value: Flux Deployer
+        - name: SLACK_ICON_EMOJI
+          value: ":heart:"
+        - name: GITHUB_URL
+          value: "https://github.com/AndriiOmelianenko/kubernetes-workshop/"
+        - name: LISTEN_ADDRESS
+          value: ":3032"
