@@ -1,0 +1,38 @@
+image:
+  repository: docker.io/fluxcd/flux
+  tag: 1.14.2
+  
+resources:
+  requests:
+    cpu: 50m
+    memory: 64Mi
+  limits:
+    cpu: 1000m
+    memory: 1024Mi
+
+helmOperator:
+  create: true
+  createCRD: false
+  repository: docker.io/fluxcd/helm-operator
+  tag: 0.10.1
+  allowNamespace: kube-system
+  resources:
+    requests:
+      cpu: 50m
+      memory: 64Mi
+    limits:
+      cpu: 1000m
+      memory: 1024Mi
+# Please follow this instructions for auth configuring in flux
+# https://github.com/weaveworks/flux/blob/master/site/helm-integration.md#authentication-for-helm-repos
+  configureRepositories:
+    enable: false
+
+git:
+  url: "ssh://git@github.com/AndriiOmelianenko/kubernetes-workshop"
+  branch: "master"
+  path: "flux"
+
+# For https://github.com/justinbarrick/fluxcloud/
+# additionalArgs:
+# - --connect=ws://fluxcloud
