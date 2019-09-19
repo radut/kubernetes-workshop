@@ -41,12 +41,7 @@ spec:
     # Please follow this instructions for auth configuring in flux
     # https://github.com/weaveworks/flux/blob/master/site/helm-integration.md#authentication-for-helm-repos
       configureRepositories:
-        enable: true
-        repositories:
-          - name: fluxcd
-            url: https://charts.fluxcd.io
-            username: ""
-            password: ""
+        enable: false
 
     git:
       url: "ssh://git@github.com/AndriiOmelianenko/kubernetes-workshop"
