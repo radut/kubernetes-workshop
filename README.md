@@ -11,7 +11,7 @@ install minikube
 https://github.com/kubernetes/minikube
 
 run
-minikube start --kubernetes-version='v1.15.4' --cpus=4
+minikube start --kubernetes-version='v1.15.4' --cpus=4 --memory='4000mb'
 
 $ kubectl version --short
 Client Version: v1.15.3

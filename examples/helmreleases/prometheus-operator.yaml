@@ -85,3 +85,23 @@ spec:
           requests:
             cpu: 100m
             memory: 200Mi
+
+    ## Component scraping etcd
+    ##
+    kubeEtcd:
+      enabled: false
+
+    ## Component scraping kube scheduler
+    ##
+    kubeScheduler:
+      enabled: false
+
+    ## Component scraping kube proxy
+    ##
+    kubeProxy:
+      enabled: false
+      
+    ## Component scraping kube state metrics
+    ##
+    kubeStateMetrics:
+      enabled: false
