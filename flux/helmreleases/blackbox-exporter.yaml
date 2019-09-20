@@ -1,0 +1,52 @@
+---
+apiVersion: flux.weave.works/v1beta1
+kind: HelmRelease
+metadata:
+  name: prometheus-blackbox-exporter
+  namespace: kube-system
+  annotations:
+    flux.weave.works/automated: "false"
+spec:
+  releaseName: prometheus-blackbox-exporter
+  chart:
+    repository: https://kubernetes-charts.storage.googleapis.com
+    name: prometheus-blackbox-exporter
+    version: 1.3.0
+  values:
+    image:
+      repository: prom/blackbox-exporter
+      tag: v0.15.0
+      pullPolicy: IfNotPresent
+
+    secretConfig: false
+    config:
+      modules:
+        http_2xx:
+          prober: http
+          timeout: 5s
+          http:
+            valid_http_versions: ["HTTP/1.1", "HTTP/2"]
+            no_follow_redirects: false
+            preferred_ip_protocol: "ip4"
+
+    resources:
+      limits:
+        cpu: 200m
+        memory: 300Mi
+      requests:
+        cpu: 100m
+        memory: 50Mi
+
+    serviceMonitor:
+      ## If true, a ServiceMonitor CRD is created for a prometheus operator
+      ## https://github.com/coreos/prometheus-operator
+      ##
+      enabled: false
+      labels: {}
+      interval: 30s
+      scrapeTimeout: 30s
+      module: http_2xx
+      # The URL that blackbox will scrape
+      url: http://example.com/healthz
+      # Optional human readable URL that will appear in Prometheus / AlertManager
+      urlHumanReadable:  # www.changemeoriwillfail.com

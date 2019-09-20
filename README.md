@@ -104,8 +104,9 @@ put prom-operator to helmreleases
 edit, use second webhook
 
 kubectl port-forward -n kube-system svc/prometheus-operator-prometheus 9090:9090
-
 kubectl port-forward -n kube-system svc/prometheus-operator-grafana 8080:80
+kubectl port-forward -n kube-system svc/prometheus-operator-alertmanager 9093:9093
+
 
 admin/prom-operator
 
