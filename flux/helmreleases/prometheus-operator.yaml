@@ -63,11 +63,11 @@ spec:
       ##
       createCustomResource: false
 
-        ## If true, the operator will create and maintain a service for scraping kubelets
-        ## ref: https://github.com/coreos/prometheus-operator/blob/master/helm/prometheus-operator/README.md
-        ##
-        kubeletService:
-          enabled: true
+      ## If true, the operator will create and maintain a service for scraping kubelets
+      ## ref: https://github.com/coreos/prometheus-operator/blob/master/helm/prometheus-operator/README.md
+      ##
+      kubeletService:
+        enabled: true
           
       resources:
         limits:

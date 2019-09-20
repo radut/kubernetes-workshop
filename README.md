@@ -111,6 +111,7 @@ kubectl port-forward -n kube-system svc/prometheus-operator-alertmanager 9093:90
 admin/prom-operator
 
 
+# add bb exporter
 
 
 
