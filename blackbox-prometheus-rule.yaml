@@ -1,0 +1,15 @@
+apiVersion: monitoring.coreos.com/v1
+kind: PrometheusRule
+metadata:
+  name: blackbox-main
+  namespace: kube-system
+spec:
+  groups:
+  - name: blackbox.rules
+    rules:
+    - alert: SiteDown
+      expr: |
+        probe_success == 0
+      for: 1m
+      annotations:
+        message: Endpoint {{`{{ $labels.target }}`}} down for 1 min.
