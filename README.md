@@ -162,6 +162,17 @@ curl "http://localhost:9115/probe?target=https://google.com&module=http_2xx"
 
 ## faq
 
+### useful commands for troubleshooting
+
+```bash
+
+kubectl -n kube-system get pods
+helm ls
+kubectl -n kube-system logs deployment/flux -f
+kubectl -n kube-system logs deployment/flux-helm-operator -f
+kubectl -n kube-system logs deployment/fluxcloud -f
+```
+
 ### run flux sync manually
 
 ```bash
