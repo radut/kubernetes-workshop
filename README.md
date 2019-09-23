@@ -96,8 +96,9 @@ Using Slack exporter
 ## flux v2
 
 1. put `examples/helmreleases/flux.yaml` under `flux/` folder as well.
-2. git commit
-3. wait for deploy
+2. check the difference between `examples/helmreleases/flux.yaml` and initial flux vaules that you have deployed (`examples/flux-initial-values.yaml`)
+3. git commit
+4. wait for deploy
 
 Verify that flux connected to fluxcloud successfully.
 
