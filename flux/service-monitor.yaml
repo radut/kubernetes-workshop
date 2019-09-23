@@ -1,0 +1,35 @@
+apiVersion: monitoring.coreos.com/v1
+kind: ServiceMonitor
+metadata:
+  labels:
+    app: prometheus-operator-apiserver
+    chart: prometheus-operator-6.11.0
+    heritage: Tiller
+    release: prometheus-operator
+  name: google.com
+  namespace: kube-system
+spec:
+  endpoints:
+  - interval: 60s
+    params:
+      module:
+      - http_2xx
+      target:
+      - https://google.com
+    path: /probe
+    relabelings:
+    - sourceLabels:
+      - __param_target
+      targetLabel: instance
+    - sourceLabels:
+      - __param_target
+      targetLabel: target
+    - sourceLabels:
+      - __param_module
+      targetLabel: module
+    targetPort: 9115
+  namespaceSelector:
+    matchNames:
+    - kube-system
+  selector:
+    app: prometheus-blackbox-exporter

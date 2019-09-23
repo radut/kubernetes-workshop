@@ -156,7 +156,7 @@ kubectl port-forward -n kube-system svc/prometheus-blackbox-exporter 9115:9115
 curl "http://localhost:9115/probe?target=https://google.com&module=http_2xx"
 ```
 
-1. add prom rule under flux
+1. add `examples/resources/blackbox-prometheus-rule.yaml` under flux
 2. add 2 service monitors under flux.
 3. see the results in Prometheus, and alerts in slack.
 
