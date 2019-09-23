@@ -165,13 +165,13 @@ curl "http://localhost:9115/probe?target=https://google.com&module=http_2xx"
 ### useful commands for troubleshooting
 
 ```bash
-
 kubectl -n kube-system get pods
 helm ls
 kubectl -n kube-system logs deployment/flux -f
 kubectl -n kube-system logs deployment/flux-helm-operator -f
 kubectl -n kube-system logs deployment/fluxcloud -f
 ```
+also look for alerts from fluxcloud in slack channel.
 
 ### run flux sync manually
 
@@ -191,3 +191,4 @@ git push
 
 - put crds under flux as well
 - add sealed secrets for managing secrets ([github.com/bitnami-labs/sealed-secrets](https://github.com/bitnami-labs/sealed-secrets))
+- build a dashboard in grafana for blackbox monitoring endpoints
