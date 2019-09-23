@@ -1,0 +1,128 @@
+---
+apiVersion: flux.weave.works/v1beta1
+kind: HelmRelease
+metadata:
+  name: prometheus-operator
+  namespace: kube-system
+  annotations:
+    flux.weave.works/automated: "false"
+spec:
+  releaseName: prometheus-operator
+  chart:
+    repository: https://kubernetes-charts.storage.googleapis.com
+    name: prometheus-operator
+    version: 6.11.0
+  values:
+    ## Configuration for alertmanager
+    ## ref: https://prometheus.io/docs/alerting/alertmanager/
+    ##
+    alertmanager:
+
+      ## Deploy alertmanager
+      ##
+      enabled: true
+
+      ## Alertmanager configuration directives
+      ## ref: https://prometheus.io/docs/alerting/configuration/#configuration-file
+      ##      https://prometheus.io/webtools/alerting/routing-tree-editor/
+      ##
+      config:
+        global:
+          resolve_timeout: 5m
+          slack_api_url: 'https://hooks.slack.com/services/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'
+        route:
+          group_wait: 10s
+          group_interval: 5m
+          repeat_interval: 32h
+          receiver: 'slack'
+          routes:
+          - match:
+              alertname: Watchdog
+            receiver: 'slack'
+        receivers:
+        - name: 'slack'
+          slack_configs:
+          - channel: '#prom-alerts'
+            send_resolved: true
+
+      alertmanagerSpec:
+        resources: 
+          limits:
+            cpu: 200m
+            memory: 400Mi
+          requests:
+            cpu: 100m
+            memory: 200Mi
+      
+    ## Manages Prometheus and Alertmanager components
+    ##
+    prometheusOperator:
+      enabled: true
+
+      ## Deploy CRDs used by Prometheus Operator.
+      ##
+      createCustomResource: false
+
+      ## If true, the operator will create and maintain a service for scraping kubelets
+      ## ref: https://github.com/coreos/prometheus-operator/blob/master/helm/prometheus-operator/README.md
+      ##
+      kubeletService:
+        enabled: true
+          
+      resources:
+        limits:
+          cpu: 200m
+          memory: 200Mi
+        requests:
+          cpu: 100m
+          memory: 100Mi
+
+    ## Deploy a Prometheus instance
+    ##
+    prometheus:
+      ## Settings affecting prometheusSpec
+      ## ref: https://github.com/coreos/prometheus-operator/blob/master/Documentation/api.md#prometheusspec
+      ##
+      prometheusSpec:
+        resources:
+          limits:
+            cpu: 200m
+            memory: 400Mi
+          requests:
+            cpu: 100m
+            memory: 200Mi
+
+    ## Component scraping etcd
+    ##
+    kubeEtcd:
+      enabled: false
+
+    ## Component scraping kube scheduler
+    ##
+    kubeScheduler:
+      enabled: false
+
+    ## Component scraping kube proxy
+    ##
+    kubeProxy:
+      enabled: false
+      
+    ## Component scraping kube state metrics
+    ##
+    kubeStateMetrics:
+      enabled: false
+
+    ## Component scraping the kubelet and kubelet-hosted cAdvisor
+    ##
+    kubelet:
+      enabled: false
+
+    ## Component scraping the kube controller manager
+    ##
+    kubeControllerManager:
+      enabled: false
+
+    ## Component scraping coreDns. Use either this or kubeDns
+    ##
+    coreDns:
+      enabled: false

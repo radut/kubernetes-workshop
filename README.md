@@ -130,7 +130,7 @@ kubectl apply -f https://raw.githubusercontent.com/coreos/prometheus-operator/v0
 kubectl apply -f https://raw.githubusercontent.com/coreos/prometheus-operator/v0.32.0/example/prometheus-operator-crd/podmonitor.crd.yaml
 ```
 
-1. put `examples/helmreleases/prometheus-operator.yaml under flux.
+1. put `examples/helmreleases/prometheus-operator.yaml` under flux.
 2. edit the file, use second webhook as alertmanager config for `slack_api_url:`
 3. push to github
 
