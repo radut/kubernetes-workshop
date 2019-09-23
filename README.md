@@ -108,7 +108,6 @@ $ kubectl -n kube-system logs deployment/fluxcloud -f
 Using Slack exporter
 Request for:/v11/daemon
 client connected!
-flux cloud is connected
 ```
 
 ## test notification
