@@ -41,7 +41,7 @@ spec:
         - name: SLACK_URL
           value: "https://hooks.slack.com/services/168LQL5B/BNKL9DVK3/ox6scsG54TATsxc2LZ90SuUt"
         - name: SLACK_CHANNEL
-          value: "#flux-notifications"
+          value: "#alerts"
         # Or configure multiple channels
         # (comma separated <channel>=<namespace>) string:
         #  value: "#kubernetes=*,#team=team"
