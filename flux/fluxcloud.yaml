@@ -56,6 +56,6 @@ spec:
         - name: SLACK_ICON_EMOJI
           value: ":heart:"
         - name: GITHUB_URL
-          value: "https://github.com/AndriiOmelianenko/kubernetes-workshop/"
+          value: "https://github.com/radut/kubernetes-workshop/"
         - name: LISTEN_ADDRESS
           value: ":3032"
