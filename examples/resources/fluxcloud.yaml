@@ -39,7 +39,7 @@ spec:
         - containerPort: 3032
         env:
         - name: SLACK_URL
-          value: "https://hooks.slack.com/services/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"
+          value: "https://hooks.slack.com/services/168LQL5B/BNKL9DVK3/ox6scsG54TATsxc2LZ90SuUt"
         - name: SLACK_CHANNEL
           value: "#flux-notifications"
         # Or configure multiple channels
