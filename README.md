@@ -1,5 +1,12 @@
 # kubernetes-workshop
 
+## prerequisites
+
+- minikube [github.com/kubernetes/minikube](https://github.com/kubernetes/minikube)
+- kubectl
+- helm (`v2.14.3`)
+- (optional) fluxctl (`1.14.2`)
+
 ## github repository
 
 create a github repository (may be public or private, doesn't matter much)
@@ -7,8 +14,6 @@ create a github repository (may be public or private, doesn't matter much)
 copy folder examples from this repo to your repo and create `flux` folder in your repo
 
 ## minikube
-
-install minikube [github.com/kubernetes/minikube](https://github.com/kubernetes/minikube)
 
 Create minikube cluster:
 
@@ -171,6 +176,7 @@ kubectl -n kube-system logs deployment/flux -f
 kubectl -n kube-system logs deployment/flux-helm-operator -f
 kubectl -n kube-system logs deployment/fluxcloud -f
 ```
+
 also look for alerts from fluxcloud in slack channel.
 
 ### run flux sync manually
