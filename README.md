@@ -83,7 +83,7 @@ kubectl -n kube-system logs deployment/flux -f
 5. Test that notification goes in manually.
 
 ```bash
-curl -X POST -H 'Content-type: application/json' --data '{"text":"Hello, World!"}' https://hooks.slack.com/services/168LQL5B/BNKL9DVK3/ox6scsG54TATsxc2LZ90SuUt
+curl -X POST -H 'Content-type: application/json' --data '{"text":"sHello, World!"}' https://hooks.slack.com/services/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
 ```
 
 ## fluxcloud
