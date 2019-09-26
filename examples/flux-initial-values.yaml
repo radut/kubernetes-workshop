@@ -1,7 +1,7 @@
 image:
   repository: docker.io/fluxcd/flux
   tag: 1.14.2
-  
+
 resources:
   requests:
     cpu: 50m
@@ -29,7 +29,7 @@ helmOperator:
     enable: false
 
 git:
-  url: "ssh://git@github.com/AndriiOmelianenko/kubernetes-workshop"
+  url: "ssh://git@github.com:radut/kubernetes-workshop.git"
   branch: "master"
   path: "flux"
 
