@@ -29,7 +29,7 @@ helmOperator:
     enable: false
 
 git:
-  url: "ssh://git@github.com:radut/kubernetes-workshop.git"
+  url: "ssh://git@github.com/radut/kubernetes-workshop.git"
   branch: "master"
   path: "flux"
 
